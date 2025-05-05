@@ -1,2 +1,28 @@
-{{page-title "Quiz"}}
-{{outlet}}
+<div class="quiz-container">
+  <h2>{{this.quiz.question}}</h2>
+  <form {{on "submit" this.checkAnswer}}>
+    {{#each this.quiz.options as |option|}}
+      <label>
+        <input
+          type="radio"
+          name="quiz-answer"
+          value={{option.value}}
+          checked={{eq this.selectedAnswer option.value}}
+          {{on "change" (fn this.setAnswer option.value)}}
+        >
+        {{option.text}}
+      </label>
+    {{/each}}
+
+    <button type="submit">Проверить</button>
+  </form>
+
+  {{#if this.isSubmitted}}
+    <div class="result {{if this.isCorrect "correct" "incorrect"}}">
+      {{this.resultMessage}}
+    </div>
+  {{/if}}
+  {{#if this.showOutlet}}
+    {{outlet}}
+  {{/if}}
+</div>
