@@ -52,6 +52,39 @@ export default class QuizRoute extends Route {
           { id: '2-3', value: 'jupiter', text: 'Jupiter' },
           { id: '2-4', value: 'saturn', text: 'Saturn' }
         ]
+      },
+      {
+        id: '3',
+        text: 'What is the largest ocean on Earth?',
+        correctAnswer: 'pacific',
+        options: [
+          { id: '3-1', value: 'atlantic', text: 'Atlantic Ocean' },
+          { id: '3-2', value: 'pacific', text: 'Pacific Ocean' },
+          { id: '3-3', value: 'indian', text: 'Indian Ocean' },
+          { id: '3-4', value: 'arctic', text: 'Arctic Ocean' }
+        ]
+      },
+      {
+        id: '4',
+        text: 'Which element has the chemical symbol "O"?',
+        correctAnswer: 'oxygen',
+        options: [
+          { id: '4-1', value: 'gold', text: 'Gold' },
+          { id: '4-2', value: 'oxygen', text: 'Oxygen' },
+          { id: '4-3', value: 'osmium', text: 'Osmium' },
+          { id: '4-4', value: 'iron', text: 'Iron' }
+        ]
+      },
+      {
+        id: '5',
+        text: 'What is the largest mammal in the world?',
+        correctAnswer: 'blue whale',
+        options: [
+          { id: '5-1', value: 'african elephant', text: 'African Elephant' },
+          { id: '5-2', value: 'blue whale', text: 'Blue Whale' },
+          { id: '5-3', value: 'giraffe', text: 'Giraffe' },
+          { id: '5-4', value: 'polar bear', text: 'Polar Bear' }
+        ]
       }
     ];
 
