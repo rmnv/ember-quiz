@@ -35,7 +35,7 @@
       <button
         type="submit"
         class="button"
-        disabled={{(or this.isSubmitted (not this.selectedAnswer))}}
+        disabled={{or this.isSubmitted (not this.selectedAnswer)}}
       >
         Check
       </button>
@@ -51,7 +51,7 @@
   </form>
 
 
-<!--  {{#if this.isSubmitted}}-->
+{{!--  {{#if this.isSubmitted}}-->
 <!--    <div class="quiz__feedback {{if this.isCorrect "quiz__feedback_correct" "quiz__feedback_wrong"}}">-->
 <!--      {{if this.isCorrect "Nice!" "Wrong"}}-->
 <!--      {{#unless this.isCorrect}}-->
@@ -60,6 +60,6 @@
 <!--        </div>-->
 <!--      {{/unless}}-->
 <!--    </div>-->
-<!--  {{/if}}-->
+<!--  {{/if}}--}}
 
 </div>

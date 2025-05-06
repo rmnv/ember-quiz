@@ -6,47 +6,16 @@ import { service } from '@ember/service';
 export default class QuizController extends Controller {
   @service router;
 
-  // Все вопросы пока храним прямо в контроллере
-  questions = [
-    {
-      id: 1,
-      text: 'Which HTTP method is used to create the resource?',
-      options: [
-        { text: 'GET', value: 'get' },
-        { text: 'POST', value: 'post' },
-        { text: 'PUT', value: 'put' },
-        { text: 'DELETE', value: 'delete' }
-      ],
-      correctAnswer: 'post'
-    },
-    {
-      id: 2,
-      text: 'Which tag in Ember is used for conditions?',
-      options: [
-        { text: '{{#if}}', value: 'if' },
-        { text: '{{#unless}}', value: 'unless' },
-        { text: '{{#each}}', value: 'each' }
-      ],
-      correctAnswer: 'if'
-    },
-    {
-      id: 3,
-      text: 'Which command creates a new component in Ember?',
-      options: [
-        { text: 'ember new component', value: 'new' },
-        { text: 'ember generate component', value: 'generate' },
-        { text: 'ember create component', value: 'create' }
-      ],
-      correctAnswer: 'generate'
-    }
-  ];
-
   @tracked currentQuestionIndex = 0;
   @tracked selectedAnswer = null;
   @tracked isSubmitted = false;
   @tracked isCorrect = false;
   @tracked score = 0;
-  @tracked attempts = []; // Для хранения попыток
+  @tracked attempts = [];
+
+  get questions() {
+    return this.model;
+  }
 
   get currentQuestion() {
     return this.questions[this.currentQuestionIndex];
@@ -93,7 +62,6 @@ export default class QuizController extends Controller {
       this.score += 1;
     }
 
-    // Сохраняем попытку
     this.attempts.push({
       questionId: this.currentQuestion.id,
       questionText: this.currentQuestion.text,
