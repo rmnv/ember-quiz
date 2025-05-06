@@ -2,6 +2,7 @@ import Controller from '@ember/controller';
 import { action } from '@ember/object';
 import { tracked } from '@glimmer/tracking';
 import { service } from '@ember/service';
+import { htmlSafe } from '@ember/template';
 
 export default class QuizController extends Controller {
   @service router;
@@ -31,6 +32,10 @@ export default class QuizController extends Controller {
     return Math.round((this.currentQuestionIndex / this.questions.length) * 100);
   }
 
+  get progressStyle() {
+    return htmlSafe(`width: ${this.progress}%`);
+  }
+
   get isLastQuestion() {
     return this.currentQuestionIndex === this.questions.length - 1;
   }
@@ -45,9 +50,7 @@ export default class QuizController extends Controller {
       attempts: this.attempts,
       timestamp: new Date().toISOString()
     };
-    console.log('Saving quiz state:', state);
     localStorage.setItem('quizState', JSON.stringify(state));
-    // Update the quiz state service
     this.quizState.updateState();
   }
 
@@ -99,10 +102,7 @@ export default class QuizController extends Controller {
     e.preventDefault();
     if (!this.selectedAnswer) return;
 
-    // Add loading state
     this.isLoading = true;
-
-    // Simulate server delay
     await new Promise(resolve => setTimeout(resolve, 1000));
 
     this.isCorrect = this.selectedAnswer === this.currentQuestion.correctAnswer;
@@ -135,26 +135,18 @@ export default class QuizController extends Controller {
 
     this.attempts.push(attempt);
     this.saveState();
-    
-    // Remove loading state
     this.isLoading = false;
   }
 
   @action
   nextQuestion() {
     if (this.currentQuestionIndex < this.questions.length - 1) {
-      // Move to next question
       this.currentQuestionIndex += 1;
-      
-      // Reset only the question-specific state
       this.selectedAnswer = null;
       this.isSubmitted = false;
       this.isCorrect = false;
-
-      // Save the updated state
       this.saveState();
     } else {
-      // Save final results
       const results = {
         score: this.score,
         total: this.questions.length,
@@ -162,20 +154,11 @@ export default class QuizController extends Controller {
         timestamp: new Date().toISOString()
       };
       
-      // Save results to localStorage
       localStorage.setItem('quizResults', JSON.stringify(results));
-      
-      // Clear only the quiz state, not results
       this.quizState.clearState();
+      this.quizState.checkResults();
       
-      // Navigate to results page with query params
-      this.router.transitionTo('results', {
-        queryParams: {
-          score: this.score,
-          total: this.questions.length,
-          attempts: JSON.stringify(this.attempts)
-        }
-      });
+      this.router.transitionTo('results');
     }
   }
 
