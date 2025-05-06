@@ -1,1 +1,145 @@
-/* Ember supports plain CSS out of the box. More info: https://cli.emberjs.com/release/advanced-use/stylesheets/ */
+:root {
+  --font-family: Inter, sans-serif;
+  --color-accent: #506aff;
+  --color-accent-highlighted: #2243fc;
+  --color-base: #0d0c22;
+  font-family: var(--font-family);
+  font-feature-settings: 'liga' 1, 'calt' 1; /* fix for Chrome */
+  color: var(--color-base);
+  background: #fff;
+}
+
+html, body {
+  padding: 0;
+  margin: 0;
+}
+
+a {
+  color: var(--color-accent);
+  transition: color 0.3s;
+  text-decoration-color: #506aff44;
+  text-decoration-line: underline;
+  text-underline-offset: 0.05em;
+}
+a:hover {
+  color: var(--color-accent-highlighted);
+  transition-duration: 0.1s;
+}
+
+
+.button {
+  appearance: none;
+  padding: 12px 20px 13px;
+  border: none;
+  border-radius: 4px;
+  font-size: 20px;
+  font-weight: 500;
+  cursor: pointer;
+  transition-property: background-color, opacity, color;
+  transition-duration: 0.3s;
+  background: var(--color-accent);
+  color: #fff;
+}
+.button:hover {
+  transition-duration: 0.1s;
+  background: var(--color-accent-highlighted);
+}
+.button:hover:not(:disabled) {
+
+}
+.button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+
+.page-constraint {
+  margin: 0 auto;
+  max-width: 1000px;
+  width: 80%;
+}
+
+.hero {
+  padding-top: 100px;;
+}
+.hero__element {
+  font-size: 100px;
+  font-weight: 900;
+}
+.hero__link_results {
+  font-size: 57px;
+}
+
+
+
+.quiz {
+  padding: 100px 0;
+}
+.quiz__progress-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+}
+.quiz__question {
+  font-weight: 500;
+  font-size: 24px;
+}
+
+
+.quiz__form {
+  margin-top: 30px;
+}
+.quiz__answers {
+
+}
+.quiz__form_submitted .quiz__answers {
+  pointer-events: none;
+}
+.quiz__answer {
+  display: block;
+  padding: 12px;
+  margin: 8px 0;
+  background: #f9f9f9;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s, opacity 0.3s;
+}
+
+.quiz__answer:hover {
+  background: #f0f0f0;
+  transition-duration: 0.1s;
+}
+.quiz__answer_wrong {
+  background: #f5e8e8;
+  opacity: 1;
+}
+.quiz__answer_correct {
+  background: #e8f5e9;
+  opacity: 1;
+}
+.quiz__answers_submitted .quiz__answer {
+  opacity: 0.3;
+}
+.quiz__answers_submitted .quiz__answer_wrong,
+.quiz__answers_submitted .quiz__answer_correct {
+  opacity: 1;
+}
+
+.quiz__actions {
+  margin-top: 20px;
+  display: flex;
+  justify-content: space-between;
+}
+
+.progress-bar {
+  height: 6px;
+  background: #eee;
+}
+.progress-bar__line {
+  height: 100%;
+  background: #64D768;
+  transition: width 0.3s;
+}
+
+
