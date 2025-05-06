@@ -1,28 +1,65 @@
-<div class="quiz-container">
-  <h2>{{this.quiz.question}}</h2>
-  <form {{on "submit" this.checkAnswer}}>
-    {{#each this.quiz.options as |option|}}
-      <label>
-        <input
-          type="radio"
-          name="quiz-answer"
-          value={{option.value}}
-          checked={{eq this.selectedAnswer option.value}}
-          {{on "change" (fn this.setAnswer option.value)}}
-        >
-        {{option.text}}
-      </label>
-    {{/each}}
+<div class="quiz">
 
-    <button type="submit">Проверить</button>
+  <div class="quiz__progress-bar">
+    <div class="progress-bar">
+      <div class="progress-bar__line" style={{concat "width:" this.progress "%"}} />
+    </div>
+  </div>
+
+  <div class="quiz__question">
+    {{this.currentQuestion.text}}
+  </div>
+
+  <form class="quiz__form {{if this.isSubmitted 'quiz__form_submitted'}}" {{on "submit" this.checkAnswer}}>
+    <div class="quiz__answers">
+      {{#each this.currentQuestion.options as |option|}}
+        <label class="quiz__answer {{
+          if this.isSubmitted
+          (if (eq option.value this.currentQuestion.correctAnswer) 'quiz__answer_correct'
+             (if (eq option.value this.selectedAnswer) 'quiz__answer_wrong' ''))
+        }}">
+          <input
+            type="radio"
+            name="quiz-answer"
+            value={{option.value}}
+            checked={{eq this.selectedAnswer option.value}}
+            {{on "change" (fn this.setAnswer option.value)}}
+            disabled={{this.isSubmitted}}
+          >
+          {{option.text}}
+        </label>
+      {{/each}}
+    </div>
+
+    <div class="quiz__actions">
+      <button
+        type="submit"
+        class="button"
+        disabled={{(or this.isSubmitted (not this.selectedAnswer))}}
+      >
+        Check
+      </button>
+      <button
+        disabled={{not this.isSubmitted}}
+        type="button"
+        class="button"
+        {{on "click" this.nextQuestion}}
+      >
+        {{if this.isLastQuestion "Done" "Next question"}}
+      </button>
+    </div>
   </form>
 
-  {{#if this.isSubmitted}}
-    <div class="result {{if this.isCorrect "correct" "incorrect"}}">
-      {{this.resultMessage}}
-    </div>
-  {{/if}}
-  {{#if this.showOutlet}}
-    {{outlet}}
-  {{/if}}
+
+<!--  {{#if this.isSubmitted}}-->
+<!--    <div class="quiz__feedback {{if this.isCorrect "quiz__feedback_correct" "quiz__feedback_wrong"}}">-->
+<!--      {{if this.isCorrect "Nice!" "Wrong"}}-->
+<!--      {{#unless this.isCorrect}}-->
+<!--        <div class="quiz__correct-answer">-->
+<!--          Correct answer: {{this.currentQuestion.correctAnswer}}-->
+<!--        </div>-->
+<!--      {{/unless}}-->
+<!--    </div>-->
+<!--  {{/if}}-->
+
 </div>
