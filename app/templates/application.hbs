@@ -4,14 +4,19 @@
   <div class="nav">
     <div class="nav__element">
       {{#if (eq this.router.currentRouteName "index")}}
-        <span class="nav__link nav__link_disabled">Home</span>
+        <span class="hero__link hero__link_disabled">Home</span>
       {{else}}
-        <LinkTo @route="index" class="nav__link">Home</LinkTo>
+        <LinkTo @route="index" class="hero__link">Home</LinkTo>
       {{/if}}
     </div>
     <div class="nav__element">
       <a target="_blank" href="http://aviasales.ru" class="nav__link">Back to Home</a>
     </div>
+    {{#if (or this.hasResults this.hasState)}}
+      <div class="nav__element" style="margin-left: auto;">
+        <span class="nav__link nav__link_reset" role="button" {{on "click" this.resetResults}}>Reset Game</span>
+      </div>
+    {{/if}}
   </div>
 
   {{outlet}}

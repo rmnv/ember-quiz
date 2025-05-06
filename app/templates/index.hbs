@@ -1,7 +1,7 @@
 <div class="hero">
   <div class="hero__element">
-    <LinkTo @route="quiz" class="hero__link hero__link_play">
-      {{#if this.hasResults}}Resume{{else}}Ready?{{/if}}
+    <LinkTo @route="quiz" class="hero__link hero__link_play" {{on "click" this.startQuiz}}>
+      {{this.buttonText}}
     </LinkTo>
   </div>
   <div class="hero__element">

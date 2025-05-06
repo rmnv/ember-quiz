@@ -3,6 +3,30 @@ import { service } from '@ember/service';
 
 export default class QuizRoute extends Route {
   @service store;
+  @service router;
+  @service quizState;
+
+  beforeModel() {
+    // Check if we have results
+    const results = JSON.parse(localStorage.getItem('quizResults') || '{}');
+    const state = JSON.parse(localStorage.getItem('quizState') || '{}');
+    
+    // If we have results but no valid state, redirect to results
+    if (results.score && (!state.currentQuestionIndex || state.currentQuestionIndex < 0)) {
+      this.router.transitionTo('results');
+      return;
+    }
+  }
+
+  setupController(controller, model) {
+    super.setupController(controller, model);
+    
+    // Only restore state if it exists and is valid
+    const state = JSON.parse(localStorage.getItem('quizState') || '{}');
+    if (state.currentQuestionIndex !== undefined && state.currentQuestionIndex >= 0) {
+      controller.restoreState();
+    }
+  }
 
   async model() {
     // Create local questions

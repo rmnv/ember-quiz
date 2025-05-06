@@ -231,3 +231,10 @@ a:hover {
   font-weight: 500;
 }
 
+.nav__link_reset {
+  color: #e8564c;
+  cursor: pointer;
+}
+.nav__link_reset:hover {
+  color: #f44336;
+}

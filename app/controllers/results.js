@@ -4,6 +4,7 @@ import { service } from '@ember/service';
 
 export default class ResultsController extends Controller {
   @service router;
+  @service quizState;
 
   get percentage() {
     return Math.round((this.model.score / this.model.total) * 100);
@@ -31,7 +32,10 @@ export default class ResultsController extends Controller {
 
   @action
   restartQuiz() {
-    localStorage.removeItem('quizResults');
-    this.router.transitionTo('quiz');
+    // Clear both state and results
+    this.quizState.clearResults();
+    
+    // Force a page reload to ensure all state is cleared
+    window.location.href = '/quiz';
   }
 } 
