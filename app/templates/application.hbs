@@ -1,5 +1,19 @@
-{{page-title "EmberQuizFrontend"}}
+{{page-title "Quiz"}}
+
 <div class="page-constraint">
+  <div class="nav">
+    <div class="nav__element">
+      {{#if (eq this.router.currentRouteName "index")}}
+        <span class="nav__link nav__link_disabled">Home</span>
+      {{else}}
+        <LinkTo @route="index" class="nav__link">Home</LinkTo>
+      {{/if}}
+    </div>
+    <div class="nav__element">
+      <a target="_blank" href="http://aviasales.ru" class="nav__link">Back to Home</a>
+    </div>
+  </div>
+
   {{outlet}}
 </div>
 
