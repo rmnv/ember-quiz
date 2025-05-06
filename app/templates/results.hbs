@@ -1,2 +1,35 @@
 {{page-title "Results"}}
 {{outlet}}
+
+<div class="results">
+  <div class="results__header">
+    <h1 class="results__title">Results</h1>
+    <div class="results__score">
+      {{this.model.score}}/{{this.model.total}} — {{this.percentage}}%
+    </div>
+    <div class="results__message">{{this.resultMessage}}</div>
+  </div>
+
+  <div class="results__attempts">
+    <h2 class="results__attempts-title">Your Answers</h2>
+    {{#each this.model.attempts as |attempt|}}
+      <div class="results__attempt {{if attempt.isCorrect 'results__attempt_correct' 'results__attempt_incorrect'}}">
+        <div class="results__attempt-question">{{attempt.questionText}}</div>
+        <div class="results__attempt-answer">
+          Your answer: {{attempt.userAnswer}}
+          {{#unless attempt.isCorrect}}
+            <div class="results__attempt-correct">
+              Correct answer: {{attempt.correctAnswer}}
+            </div>
+          {{/unless}}
+        </div>
+      </div>
+    {{/each}}
+  </div>
+
+  <div class="results__actions">
+    <button type="button" class="button" {{on "click" this.restartQuiz}}>
+      Try Again
+    </button>
+  </div>
+</div>

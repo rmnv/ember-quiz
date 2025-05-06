@@ -3,15 +3,17 @@
   --color-accent: #506aff;
   --color-accent-highlighted: #2243fc;
   --color-base: #0d0c22;
-  font-family: var(--font-family);
-  font-feature-settings: 'liga' 1, 'calt' 1; /* fix for Chrome */
-  color: var(--color-base);
-  background: #fff;
+  --color-green:
 }
 
 html, body {
   padding: 0;
   margin: 0;
+  font-family: var(--font-family);
+  font-feature-settings: 'liga' 1, 'calt' 1; /* fix for Chrome */
+  font-size: 16px;
+  color: var(--color-base);
+  background: #fff;
 }
 
 a {
@@ -32,7 +34,7 @@ a:hover {
   padding: 12px 20px 13px;
   border: none;
   border-radius: 4px;
-  font-size: 20px;
+  font-size: 1.2rem;
   font-weight: 500;
   cursor: pointer;
   transition-property: background-color, opacity, color;
@@ -44,12 +46,10 @@ a:hover {
   transition-duration: 0.1s;
   background: var(--color-accent-highlighted);
 }
-.button:hover:not(:disabled) {
-
-}
 .button:disabled {
   opacity: 0.4;
   cursor: not-allowed;
+  pointer-events: none;
 }
 
 
@@ -70,6 +70,76 @@ a:hover {
   font-size: 57px;
 }
 
+.results {
+  padding: 100px 0;
+}
+
+
+
+.progress-bar {
+  height: 6px;
+  background: #eee;
+}
+.progress-bar__line {
+  height: 100%;
+  background: #64D768;
+  transition: width 0.3s;
+}
+
+.results {
+  padding: 100px 0;
+}
+
+.results__title {
+  font-size: 2rem;
+  font-weight: 900;
+}
+
+.results__score {
+  margin-top: 2rem;
+  font-size: 5rem;
+  font-weight: 900;
+}
+
+.results__attempts {
+  margin-top: 2rem;
+}
+
+.results__attempts-title {
+  font-size: 1.5rem;
+  margin-top: 1rem;
+}
+
+.results__attempt {
+  padding: 0 1rem;
+  margin-top: 1rem;
+}
+
+.results__attempt_correct {
+  border-left: 4px solid #e8f5e9;
+}
+
+.results__attempt_incorrect {
+  border-left: 4px solid #f44336;
+}
+
+.results__attempt-question {
+  font-weight: 500;
+}
+
+.results__attempt-answer {
+  margin-top: 0.5rem;
+  color: #666;
+}
+
+.results__attempt-correct {
+  margin-top: 0.5rem;
+  color: #4caf50;
+}
+
+.results__actions {
+  margin-top: 3rem;
+} 
 
 
 .quiz {
@@ -83,7 +153,7 @@ a:hover {
 }
 .quiz__question {
   font-weight: 500;
-  font-size: 24px;
+  font-size: 1.5rem;
 }
 
 
@@ -131,15 +201,4 @@ a:hover {
   display: flex;
   justify-content: space-between;
 }
-
-.progress-bar {
-  height: 6px;
-  background: #eee;
-}
-.progress-bar__line {
-  height: 100%;
-  background: #64D768;
-  transition: width 0.3s;
-}
-
 
