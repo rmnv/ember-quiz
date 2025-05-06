@@ -35,6 +35,9 @@ export default class ResultsController extends Controller {
 
   @action
   restartQuiz() {
-    this.router.transitionTo('quiz');
+    this.router.transitionTo('quiz').then(() => {
+      const quizController = this.router.currentRoute.controller;
+      quizController.resetQuiz();
+    });
   }
 } 

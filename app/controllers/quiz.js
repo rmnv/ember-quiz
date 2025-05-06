@@ -62,13 +62,28 @@ export default class QuizController extends Controller {
       this.score += 1;
     }
 
-    this.attempts.push({
+    const correctAnswerOption = this.currentQuestion.options.find(
+      option => option.value.toLowerCase().trim() === this.currentQuestion.correctAnswer.toLowerCase().trim()
+    );
+
+    const userAnswerOption = this.currentQuestion.options.find(
+      option => option.value.toLowerCase().trim() === this.selectedAnswer.toLowerCase().trim()
+    );
+
+    if (!correctAnswerOption || !userAnswerOption) {
+      return;
+    }
+
+    const attempt = {
       questionId: this.currentQuestion.id,
       questionText: this.currentQuestion.text,
-      userAnswer: this.selectedAnswer,
+      userAnswer: userAnswerOption.text,
+      correctAnswer: correctAnswerOption.text,
       isCorrect: this.isCorrect,
       timestamp: new Date()
-    });
+    };
+
+    this.attempts.push(attempt);
   }
 
   @action
@@ -92,5 +107,15 @@ export default class QuizController extends Controller {
     this.selectedAnswer = null;
     this.isSubmitted = false;
     this.isCorrect = false;
+  }
+
+  @action
+  resetQuiz() {
+    this.currentQuestionIndex = 0;
+    this.selectedAnswer = null;
+    this.isSubmitted = false;
+    this.isCorrect = false;
+    this.score = 0;
+    this.attempts = [];
   }
 }
