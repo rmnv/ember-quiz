@@ -1,4 +1,6 @@
 <div class="quiz">
+
+  
   
   <div class="quiz__title">
     Do your best!
@@ -28,7 +30,7 @@
             value={{option.value}}
             checked={{eq this.selectedAnswer option.value}}
             {{on "change" (fn this.setAnswer option.value)}}
-            disabled={{this.isSubmitted}}
+            disabled={{or this.isSubmitted this.isLoading}}
           >
           {{option.text}}
         </label>
@@ -39,12 +41,12 @@
       <button
         type="submit"
         class="button"
-        disabled={{or this.isSubmitted (not this.selectedAnswer)}}
+        disabled={{or this.isSubmitted (not this.selectedAnswer) this.isLoading}}
       >
-        Check
+        {{if this.isLoading "Checking..." "Check"}}
       </button>
       <button
-        disabled={{not this.isSubmitted}}
+        disabled={{or (not this.isSubmitted) this.isLoading}}
         type="button"
         class="button button_green"
         {{on "click" this.nextQuestion}}

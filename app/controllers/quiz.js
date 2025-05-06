@@ -13,6 +13,7 @@ export default class QuizController extends Controller {
   @tracked isCorrect = false;
   @tracked score = 0;
   @tracked attempts = [];
+  @tracked isLoading = false;
 
   constructor() {
     super(...arguments);
@@ -94,9 +95,15 @@ export default class QuizController extends Controller {
   }
 
   @action
-  checkAnswer(e) {
+  async checkAnswer(e) {
     e.preventDefault();
     if (!this.selectedAnswer) return;
+
+    // Add loading state
+    this.isLoading = true;
+
+    // Simulate server delay
+    await new Promise(resolve => setTimeout(resolve, 1000));
 
     this.isCorrect = this.selectedAnswer === this.currentQuestion.correctAnswer;
     this.isSubmitted = true;
@@ -128,21 +135,14 @@ export default class QuizController extends Controller {
 
     this.attempts.push(attempt);
     this.saveState();
+    
+    // Remove loading state
+    this.isLoading = false;
   }
 
   @action
   nextQuestion() {
     if (this.currentQuestionIndex < this.questions.length - 1) {
-      // Save current state before moving to next question
-      const currentState = {
-        currentQuestionIndex: this.currentQuestionIndex,
-        selectedAnswer: this.selectedAnswer,
-        isSubmitted: this.isSubmitted,
-        isCorrect: this.isCorrect,
-        score: this.score,
-        attempts: this.attempts
-      };
-
       // Move to next question
       this.currentQuestionIndex += 1;
       
