@@ -1,7 +1,5 @@
 <div class="quiz">
 
-  
-  
   <div class="quiz__title">
     Do your best!
   </div>
@@ -16,14 +14,25 @@
     {{this.currentQuestion.text}}
   </div>
 
-  <form class="quiz__form {{if this.isSubmitted 'quiz__form_submitted'}}" {{on "submit" this.checkAnswer}}>
+  <form
+    class="quiz__form {{if this.isSubmitted 'quiz__form_submitted'}}"
+    {{on "submit" this.checkAnswer}}
+  >
     <div class="quiz__answers">
       {{#each this.currentQuestion.options as |option|}}
-        <label class="quiz__answer {{
-          if this.isSubmitted
-          (if (eq option.value this.currentQuestion.correctAnswer) 'quiz__answer_correct'
-             (if (eq option.value this.selectedAnswer) 'quiz__answer_wrong' ''))
-        }}">
+        <label
+          class="quiz__answer
+            {{if
+              this.isSubmitted
+              (if
+                (eq option.value this.currentQuestion.correctAnswer)
+                'quiz__answer_correct'
+                (if
+                  (eq option.value this.selectedAnswer) 'quiz__answer_wrong' ''
+                )
+              )
+            }}"
+        >
           <input
             type="radio"
             name="quiz-answer"
@@ -31,7 +40,7 @@
             checked={{eq this.selectedAnswer option.value}}
             {{on "change" (fn this.setAnswer option.value)}}
             disabled={{or this.isSubmitted this.isLoading}}
-          >
+          />
           {{option.text}}
         </label>
       {{/each}}
@@ -41,7 +50,11 @@
       <button
         type="submit"
         class="button"
-        disabled={{or this.isSubmitted (not this.selectedAnswer) this.isLoading}}
+        disabled={{or
+          this.isSubmitted
+          (not this.selectedAnswer)
+          this.isLoading
+        }}
       >
         {{if this.isLoading "Checking..." "Check"}}
       </button>
@@ -56,8 +69,7 @@
     </div>
   </form>
 
-
-{{!--  {{#if this.isSubmitted}}-->
+  {{!--  {{#if this.isSubmitted}}-->
 <!--    <div class="quiz__feedback {{if this.isCorrect "quiz__feedback_correct" "quiz__feedback_wrong"}}">-->
 <!--      {{if this.isCorrect "Nice!" "Wrong"}}-->
 <!--      {{#unless this.isCorrect}}-->

@@ -5,14 +5,16 @@
 
   <div class="results__progress-bar">
     <div class="progress-bar">
-      <div class="progress-bar__line" style={{"width:" "100%"}} />
+      <div class="progress-bar__line progress-bar__line_filled" />
     </div>
   </div>
 
   <div class="results__header">
     <h1 class="results__title">Results</h1>
     <div class="results__score">
-      {{this.model.score}}/{{this.model.total}} — {{this.percentage}}%
+      {{this.model.score}}/{{this.model.total}}
+      —
+      {{this.percentage}}%
     </div>
     <div class="results__message">{{this.resultMessage}}</div>
   </div>
@@ -20,13 +22,22 @@
   <div class="results__attempts">
     <h2 class="results__attempts-title">Your Answers</h2>
     {{#each this.model.attempts as |attempt|}}
-      <div class="results__attempt {{if attempt.isCorrect 'results__attempt_correct' 'results__attempt_incorrect'}}">
+      <div
+        class="results__attempt
+          {{if
+            attempt.isCorrect
+            'results__attempt_correct'
+            'results__attempt_incorrect'
+          }}"
+      >
         <div class="results__attempt-question">{{attempt.questionText}}</div>
         <div class="results__attempt-answer">
-          Your answer: {{attempt.userAnswer}}
+          Your answer:
+          {{attempt.userAnswer}}
           {{#unless attempt.isCorrect}}
             <div class="results__attempt-correct">
-              Correct answer: {{attempt.correctAnswer}}
+              Correct answer:
+              {{attempt.correctAnswer}}
             </div>
           {{/unless}}
         </div>

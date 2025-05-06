@@ -34,8 +34,8 @@ export default class ResultsController extends Controller {
   restartQuiz() {
     // Clear both state and results
     this.quizState.clearResults();
-    
+
     // Force a page reload to ensure all state is cleared
     window.location.href = '/quiz';
   }
-} 
+}

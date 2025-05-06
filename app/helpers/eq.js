@@ -5,4 +5,3 @@ export function eq([a, b]) {
 }
 
 export default helper(eq);
-

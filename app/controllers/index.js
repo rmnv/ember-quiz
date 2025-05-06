@@ -37,4 +37,4 @@ export default class IndexController extends Controller {
     event.preventDefault();
     this.router.transitionTo('quiz');
   }
-} 
+}

@@ -6,7 +6,7 @@ export default class ResultsRoute extends Route {
 
   model() {
     const results = JSON.parse(localStorage.getItem('quizResults') || '{}');
-    
+
     if (!results.score) {
       // If no results found, redirect to quiz
       this.router.transitionTo('quiz');
@@ -17,7 +17,7 @@ export default class ResultsRoute extends Route {
       score: results.score,
       total: results.total,
       attempts: results.attempts || [],
-      timestamp: results.timestamp
+      timestamp: results.timestamp,
     };
   }
 }

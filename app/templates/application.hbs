@@ -10,15 +10,23 @@
       {{/if}}
     </div>
     <div class="nav__element">
-      <a target="_blank" href="http://aviasales.ru" class="nav__link">Back to Home</a>
+      <a
+        target="_blank"
+        rel="noopener noreferrer"
+        href="http://aviasales.ru"
+        class="nav__link"
+      >Back to Home</a>
     </div>
     {{#if (or this.hasResults this.hasState)}}
-      <div class="nav__element" style="margin-left: auto;">
-        <span class="nav__link nav__link_reset" role="button" {{on "click" this.resetResults}}>Reset Game</span>
+      <div class="nav__element nav__element_right">
+        <span
+          class="nav__link nav__link_reset"
+          role="button"
+          {{on "click" this.resetResults}}
+        >Reset Game</span>
       </div>
     {{/if}}
   </div>
 
   {{outlet}}
 </div>
-

@@ -1,14 +1,23 @@
 <div class="hero">
   <div class="hero__element">
-    <LinkTo @route="quiz" class="hero__link hero__link_play" {{on "click" this.startQuiz}}>
+    <LinkTo
+      @route="quiz"
+      class="hero__link hero__link_play"
+      {{on "click" this.startQuiz}}
+    >
       {{this.buttonText}}
     </LinkTo>
   </div>
   <div class="hero__element">
     {{#if this.hasResults}}
-      <LinkTo @route="results" class="hero__link hero__link_results">Reflexions</LinkTo>
+      <LinkTo
+        @route="results"
+        class="hero__link hero__link_results"
+      >Reflexions</LinkTo>
     {{else}}
-      <span class="hero__link hero__link_results hero__link_disabled">Reflexions</span>
+      <span
+        class="hero__link hero__link_results hero__link_disabled"
+      >Reflexions</span>
     {{/if}}
   </div>
 </div>

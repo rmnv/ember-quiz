@@ -29,7 +29,9 @@ export default class QuizController extends Controller {
   }
 
   get progress() {
-    return Math.round((this.currentQuestionIndex / this.questions.length) * 100);
+    return Math.round(
+      (this.currentQuestionIndex / this.questions.length) * 100,
+    );
   }
 
   get progressStyle() {
@@ -48,7 +50,7 @@ export default class QuizController extends Controller {
       isCorrect: this.isCorrect,
       score: this.score,
       attempts: this.attempts,
-      timestamp: new Date().toISOString()
+      timestamp: new Date().toISOString(),
     };
     localStorage.setItem('quizState', JSON.stringify(state));
     this.quizState.updateState();
@@ -84,7 +86,10 @@ export default class QuizController extends Controller {
       return 'quiz__answer_correct';
     }
 
-    if (option.value === this.selectedAnswer && option.value !== correctAnswer) {
+    if (
+      option.value === this.selectedAnswer &&
+      option.value !== correctAnswer
+    ) {
       return 'quiz__answer_incorrect';
     }
 
@@ -103,7 +108,7 @@ export default class QuizController extends Controller {
     if (!this.selectedAnswer) return;
 
     this.isLoading = true;
-    await new Promise(resolve => setTimeout(resolve, 1000));
+    await new Promise((resolve) => setTimeout(resolve, 1000));
 
     this.isCorrect = this.selectedAnswer === this.currentQuestion.correctAnswer;
     this.isSubmitted = true;
@@ -113,11 +118,15 @@ export default class QuizController extends Controller {
     }
 
     const correctAnswerOption = this.currentQuestion.options.find(
-      option => option.value.toLowerCase().trim() === this.currentQuestion.correctAnswer.toLowerCase().trim()
+      (option) =>
+        option.value.toLowerCase().trim() ===
+        this.currentQuestion.correctAnswer.toLowerCase().trim(),
     );
 
     const userAnswerOption = this.currentQuestion.options.find(
-      option => option.value.toLowerCase().trim() === this.selectedAnswer.toLowerCase().trim()
+      (option) =>
+        option.value.toLowerCase().trim() ===
+        this.selectedAnswer.toLowerCase().trim(),
     );
 
     if (!correctAnswerOption || !userAnswerOption) {
@@ -130,7 +139,7 @@ export default class QuizController extends Controller {
       userAnswer: userAnswerOption.text,
       correctAnswer: correctAnswerOption.text,
       isCorrect: this.isCorrect,
-      timestamp: new Date()
+      timestamp: new Date(),
     };
 
     this.attempts.push(attempt);
@@ -151,13 +160,13 @@ export default class QuizController extends Controller {
         score: this.score,
         total: this.questions.length,
         attempts: this.attempts,
-        timestamp: new Date().toISOString()
+        timestamp: new Date().toISOString(),
       };
-      
+
       localStorage.setItem('quizResults', JSON.stringify(results));
       this.quizState.clearState();
       this.quizState.checkResults();
-      
+
       this.router.transitionTo('results');
     }
   }

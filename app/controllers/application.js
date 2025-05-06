@@ -18,8 +18,8 @@ export default class ApplicationController extends Controller {
   resetResults() {
     // Clear all state using the service
     this.quizState.clearResults();
-    
+
     // Force a page reload to ensure all state is cleared
     window.location.href = '/';
   }
-} 
+}

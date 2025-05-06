@@ -13,7 +13,9 @@ export default class QuizStateService extends Service {
 
   checkState() {
     const state = JSON.parse(localStorage.getItem('quizState') || '{}');
-    this.hasState = state.currentQuestionIndex !== undefined && state.currentQuestionIndex >= 0;
+    this.hasState =
+      state.currentQuestionIndex !== undefined &&
+      state.currentQuestionIndex >= 0;
   }
 
   checkResults() {
@@ -40,4 +42,4 @@ export default class QuizStateService extends Service {
     this.hasState = false;
     this.hasResults = false;
   }
-} 
+}

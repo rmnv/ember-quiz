@@ -4,4 +4,4 @@ export function jsonStringify([obj]) {
   return JSON.stringify(obj, null, 2);
 }
 
-export default helper(jsonStringify); 
+export default helper(jsonStringify);

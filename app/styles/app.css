@@ -7,11 +7,14 @@
   --color-green-highlighted: #18e83e;
 }
 
-html, body {
+html,
+body {
   padding: 0;
   margin: 0;
   font-family: var(--font-family);
-  font-feature-settings: 'liga' 1, 'calt' 1; /* fix for Chrome */
+  font-feature-settings:
+    "liga" 1,
+    "calt" 1; /* fix for Chrome */
   font-size: 16px;
   color: var(--color-base);
   background: #fff;
@@ -28,7 +31,6 @@ a:hover {
   color: var(--color-accent-highlighted);
   transition-duration: 0.1s;
 }
-
 
 .button {
   appearance: none;
@@ -59,7 +61,6 @@ a:hover {
   background: var(--color-green-highlighted);
 }
 
-
 .page-constraint {
   margin: 0 auto;
   max-width: 1000px;
@@ -82,19 +83,19 @@ a:hover {
   pointer-events: none;
 }
 
-
 .progress-bar {
   height: 6px;
   background: #eee;
 }
 .progress-bar__line {
   height: 100%;
-  background: #64D768;
+  background: #64d768;
   transition: width 0.3s;
 }
-
+.progress-bar__line_filled {
+  width: 100%;
+}
 .results {
-
 }
 
 .results__progress-bar {
@@ -153,8 +154,7 @@ a:hover {
 
 .results__actions {
   margin-top: 3rem;
-} 
-
+}
 
 .quiz {
 }
@@ -174,12 +174,10 @@ a:hover {
   font-size: 1.5rem;
 }
 
-
 .quiz__form {
   margin-top: 30px;
 }
 .quiz__answers {
-
 }
 .quiz__form_submitted .quiz__answers {
   pointer-events: none;
@@ -191,7 +189,9 @@ a:hover {
   background: #f9f9f9;
   border-radius: 4px;
   cursor: pointer;
-  transition: background 0.3s, opacity 0.3s;
+  transition:
+    background 0.3s,
+    opacity 0.3s;
 }
 
 .quiz__answer:hover {
@@ -229,6 +229,10 @@ a:hover {
 .nav__element {
   font-size: 1.5rem;
   font-weight: 500;
+}
+
+.nav__element_right {
+  margin-left: auto;
 }
 
 .nav__link_reset {
