@@ -69,6 +69,11 @@ a:hover {
 .hero__link_results {
   font-size: 57px;
 }
+.hero__link_disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
 
 .results {
   padding: 100px 0;
