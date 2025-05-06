@@ -1,4 +1,8 @@
 <div class="quiz">
+  
+  <div class="quiz__title">
+    Do your best!
+  </div>
 
   <div class="quiz__progress-bar">
     <div class="progress-bar">
@@ -42,7 +46,7 @@
       <button
         disabled={{not this.isSubmitted}}
         type="button"
-        class="button"
+        class="button button_green"
         {{on "click" this.nextQuestion}}
       >
         {{if this.isLastQuestion "Done" "Next question"}}

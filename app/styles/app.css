@@ -3,7 +3,8 @@
   --color-accent: #506aff;
   --color-accent-highlighted: #2243fc;
   --color-base: #0d0c22;
-  --color-green:
+  --color-green: #41de78;
+  --color-green-highlighted: #18e83e;
 }
 
 html, body {
@@ -51,6 +52,12 @@ a:hover {
   cursor: not-allowed;
   pointer-events: none;
 }
+.button_green {
+  background: var(--color-green);
+}
+.button_green:hover {
+  background: var(--color-green-highlighted);
+}
 
 
 .page-constraint {
@@ -93,6 +100,13 @@ a:hover {
 
 .results {
   padding: 100px 0;
+}
+
+.results__progress-bar {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
 }
 
 .results__title {
@@ -150,6 +164,10 @@ a:hover {
 .quiz {
   padding: 100px 0;
 }
+.quiz__title {
+  font-size: 2rem;
+  font-weight: 900;
+}
 .quiz__progress-bar {
   position: fixed;
   left: 0;
@@ -157,6 +175,7 @@ a:hover {
   bottom: 0;
 }
 .quiz__question {
+  margin-top: 2rem;
   font-weight: 500;
   font-size: 1.5rem;
 }
