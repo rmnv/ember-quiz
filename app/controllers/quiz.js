@@ -92,13 +92,15 @@ export default class QuizController extends Controller {
       this.currentQuestionIndex += 1;
       this.resetQuestionState();
     } else {
-      this.router.transitionTo('results', {
-        queryParams: {
-          score: this.score,
-          total: this.questions.length,
-          attempts: JSON.stringify(this.attempts)
-        }
-      });
+      const results = {
+        score: this.score,
+        total: this.questions.length,
+        attempts: this.attempts,
+        timestamp: new Date().toISOString()
+      };
+      
+      localStorage.setItem('quizResults', JSON.stringify(results));
+      this.router.transitionTo('results');
     }
   }
 

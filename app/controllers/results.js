@@ -22,22 +22,16 @@ export default class ResultsController extends Controller {
   }
 
   get resultMessage() {
-    if (this.isPerfect) {
-      return 'Perfect! You got all questions right!';
-    } else if (this.isGood) {
-      return 'Great job! You did really well!';
-    } else if (this.isAverage) {
-      return 'Not bad! Keep practicing!';
-    } else {
-      return 'Keep trying! You can do better!';
-    }
+    const percentage = this.percentage;
+    if (percentage === 100) return 'Perfect! You got all questions right!';
+    if (percentage >= 80) return 'Great job! You did really well!';
+    if (percentage >= 60) return 'Good effort! Keep practicing!';
+    return 'Keep trying! You can do better next time!';
   }
 
   @action
   restartQuiz() {
-    this.router.transitionTo('quiz').then(() => {
-      const quizController = this.router.currentRoute.controller;
-      quizController.resetQuiz();
-    });
+    localStorage.removeItem('quizResults');
+    this.router.transitionTo('quiz');
   }
 } 
